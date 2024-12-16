@@ -1,0 +1,150 @@
+/* Base */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Import de la police depuis Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap');
+
+body { 
+    margin: 0; 
+    background: linear-gradient(45deg, #000428, #004e92); 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    height: 100vh;
+    color: white;
+    font-family: Arial, sans-serif;
+    position: fixed;
+    width: 100%;
+}
+
+/* Canvas */
+canvas { 
+    width: 100%; 
+    height: 100%; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Header et Navigation */
+.header-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 100%;
+    z-index: 1;
+}
+
+h1 {
+    margin: 0;
+    font-size: 4.5rem;
+    text-transform: uppercase;
+    transition: opacity 1s ease;
+    font-family: 'Playfair Display', serif;
+    letter-spacing: 4px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    perspective: 1000px;
+}
+
+.subtitle {
+    margin-top: 10px;
+    display: flex;
+    gap: 20px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: opacity 1s ease;
+    justify-content: center;
+}
+
+.subtitle a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    display: flex;
+    gap: 2px;
+    position: relative;
+    z-index: 1;
+}
+
+.subtitle a:hover {
+    color: #FFD700;
+}
+
+/* Animation des lettres */
+.title-letter {
+    display: inline-block;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-origin: center;
+    pointer-events: none;
+}
+
+.subtitle a:hover .title-letter {
+    color: #FFD700;
+    transform: scale(1.1);
+}
+
+/* Contenu principal */
+#content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    opacity: 0;
+    z-index: 10;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    pointer-events: all;
+}
+
+/* Bouton retour */
+#back-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background-color: rgba(255,255,255,0.2);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, opacity 1s ease;
+    opacity: 0;
+    z-index: 11;
+}
+
+#back-button:hover {
+    background-color: rgba(255,255,255,0.4);
+}
+
+/* Grille des projets et filtres */
+.projects-grid,
+.language-filter,
+.pagination {
+    pointer-events: all;
+    position: relative;
+    z-index: 100;
+}
+
+.filter-btn,
+.page-btn {
+    cursor: pointer;
+    position: relative;
+    z-index: 100;
+}
