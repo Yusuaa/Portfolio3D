@@ -1,4 +1,3 @@
-// Fonction pour générer le contenu des sections
 function getSectionContent(section) {
     switch(section) {
         case 'about':
@@ -12,29 +11,29 @@ function getSectionContent(section) {
                     align-items: start;
                 ">
                     <!-- Profil à gauche -->
-                    <div style="
-                        background: rgba(255, 255, 255, 0.1);
+                    <div class="glass-profile" style="
+                        background: none;
                         padding: 25px;
                         border-radius: 20px;
-                        backdrop-filter: blur(10px);
-                        border: 1px solid rgba(255, 255, 255, 0.1);
+                        backdrop-filter: blur(5px);
+                        border: 1px solid rgba(255, 215, 0, 0.3);
                         text-align: center;
                         position: relative;
                         z-index: 1000;
+                        box-shadow: 0 8px 32px rgba(255, 215, 0, 0.1);
                     ">
-                        <div style="
-                            width: 120px;
-                            height: 120px;
-                            background: linear-gradient(45deg, #FFD700, #FFA500);
+                        <div class="profile-image" style="
+                            width: 150px;
+                            height: 150px;
+                            background: linear-gradient(45deg, rgba(255, 215, 0, 0.3), rgba(255, 165, 0, 0.3));
+                            border: 2px solid rgba(255, 215, 0, 0.5);
                             border-radius: 50%;
-                            margin: 0 auto 15px;
+                            margin: 0 auto 20px;
                             display: flex;
                             align-items: center;
                             justify-content: center;
                             font-size: 2.5em;
-                            color: white;
-                            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-                            font-family: 'Playfair Display', serif;
+                            overflow: hidden;
                         ">L</div>
                         <h2 style="
                             font-size: 1.8em;
@@ -47,28 +46,51 @@ function getSectionContent(section) {
                             margin-bottom: 15px;
                             color: rgba(255, 255, 255, 0.9);
                         ">Développeur Junior • 19 ans</p>
-                        <p style="
-                            font-style: italic;
-                            color: #FFD700;
-                            margin-bottom: 15px;
-                        ">"On rigole, on rigole mais on voit pas le fond du bol"</p>
-                        <div style="
-                            background: rgba(255, 255, 255, 0.05);
+                        
+                        <!-- Social Links -->
+                        <div class="social-links" style="
+                            display: flex;
+                            justify-content: center;
+                            gap: 15px;
+                            margin: 20px 0;
+                        ">
+                            <a href="https://github.com/Yusuaa" target="_blank" style="
+                                color: #FFD700;
+                                text-decoration: none;
+                                padding: 10px;
+                                border-radius: 50%;
+                                border: 1px solid rgba(255, 215, 0, 0.3);
+                                transition: all 0.3s ease;
+                            ">
+                                <i class="fab fa-github"></i>
+                                GitHub
+                            </a>
+                            <a href="https://www.linkedin.com/in/lucadevaux/" target="_blank" style="
+                                color: #FFD700;
+                                text-decoration: none;
+                                padding: 10px;
+                                border-radius: 50%;
+                                border: 1px solid rgba(255, 215, 0, 0.3);
+                                transition: all 0.3s ease;
+                            ">
+                                <i class="fab fa-linkedin"></i>
+                                LinkedIn
+                            </a>
+                        </div>
+
+                        <div class="contact-info" style="
+                            background: none;
                             padding: 15px;
                             border-radius: 15px;
                             margin-top: 15px;
+                            border: 1px solid rgba(255, 215, 0, 0.2);
+                            backdrop-filter: blur(5px);
                         ">
-                            <p style="line-height: 1.6;">
-                                Passionné par la programmation depuis la classe de Première, 
-                                je prends beaucoup de plaisir à coder aujourd'hui.
+                            <p style="color: #FFD700; margin-bottom: 10px;">
+                                <i class="fas fa-phone"></i> 06 48 29 95 97
                             </p>
-                            <p style="
-                                line-height: 1.6;
-                                margin-top: 10px;
-                                color: #FFD700;
-                                font-weight: bold;
-                            ">
-                                🔍 En recherche d'alternance pour Septembre 2024
+                            <p style="font-style: italic; margin-bottom: 15px;">
+                                "Passionné par le développement et les nouvelles technologies"
                             </p>
                         </div>
                     </div>
@@ -76,127 +98,95 @@ function getSectionContent(section) {
                     <!-- Contenu à droite -->
                     <div style="display: flex; flex-direction: column; gap: 15px; position: relative; z-index: 1000;">
                         <!-- Formation -->
-                        <div style="
-                            background: rgba(255, 255, 255, 0.1);
+                        <div class="glass-section" style="
+                            background: none;
                             padding: 20px;
                             border-radius: 20px;
-                            backdrop-filter: blur(10px);
-                            border: 1px solid rgba(255, 255, 255, 0.1);
+                            backdrop-filter: blur(5px);
+                            border: 1px solid rgba(255, 215, 0, 0.3);
+                            box-shadow: 0 8px 32px rgba(255, 215, 0, 0.1);
                         ">
-                            <h3 style="color: #FFD700; margin-bottom: 12px; font-size: 1.2em;">Formation 🎓</h3>
-                            <p style="line-height: 1.5;">Étudiant en 2ème année d'informatique à l'IUT de Gradignan, Bordeaux</p>
+                            <h3 style="color: #FFD700; margin-bottom: 12px; font-size: 1.2em;">
+                                <i class="fas fa-graduation-cap"></i> Formation
+                            </h3>
+                            <div style="line-height: 1.6;">
+                                <p><strong>BUT Informatique</strong> - 2ème année</p>
+                                <p>IUT de Bordeaux - Gradignan</p>
+                                <p>Spécialisation en développement d'applications</p>
+                            </div>
                         </div>
 
                         <!-- Compétences -->
-                        <div style="
-                            background: rgba(255, 255, 255, 0.1);
+                        <div class="glass-section" style="
+                            background: none;
                             padding: 20px;
                             border-radius: 20px;
-                            backdrop-filter: blur(10px);
-                            border: 1px solid rgba(255, 255, 255, 0.1);
+                            backdrop-filter: blur(5px);
+                            border: 1px solid rgba(255, 215, 0, 0.3);
+                            box-shadow: 0 8px 32px rgba(255, 215, 0, 0.1);
                         ">
-                            <h3 style="color: #FFD700; margin-bottom: 12px; font-size: 1.2em;">Compétences Recherchées 💻</h3>
-                            <div style="
+                            <h3 style="color: #FFD700; margin-bottom: 12px; font-size: 1.2em;">
+                                <i class="fas fa-code"></i> Compétences Techniques
+                            </h3>
+                            <div class="skills-grid" style="
                                 display: grid;
-                                grid-template-columns: repeat(4, 1fr);
+                                grid-template-columns: repeat(3, 1fr);
                                 gap: 10px;
-                                margin-bottom: 15px;
                             ">
-                                <div style="background: rgba(255, 255, 255, 0.05); padding: 8px; border-radius: 10px; text-align: center;">Java</div>
-                                <div style="background: rgba(255, 255, 255, 0.05); padding: 8px; border-radius: 10px; text-align: center;">Python</div>
-                                <div style="background: rgba(255, 255, 255, 0.05); padding: 8px; border-radius: 10px; text-align: center;">Web</div>
-                                <div style="background: rgba(255, 255, 255, 0.05); padding: 8px; border-radius: 10px; text-align: center;">Cybersécurité</div>
+                                <div class="skill-item">Java</div>
+                                <div class="skill-item">Python</div>
+                                <div class="skill-item">JavaScript</div>
+                                <div class="skill-item">HTML/CSS</div>
+                                <div class="skill-item">Git</div>
+                                <div class="skill-item">SQL</div>
                             </div>
-                            <p style="line-height: 1.5; text-align: center; margin-top: 10px;">
-                                À l'écoute d'opportunités dans ces domaines pour septembre 2024
+                        </div>
+
+                        <!-- Recherche -->
+                        <div class="glass-section highlight" style="
+                            background: none;
+                            padding: 20px;
+                            border-radius: 20px;
+                            backdrop-filter: blur(5px);
+                            border: 2px solid rgba(255, 215, 0, 0.5);
+                            box-shadow: 0 8px 32px rgba(255, 215, 0, 0.2);
+                        ">
+                            <h3 style="color: #FFD700; margin-bottom: 12px; font-size: 1.2em;">
+                                <i class="fas fa-search"></i> Recherche d'Alternance
+                            </h3>
+                            <p style="line-height: 1.6;">
+                                Je suis actuellement à la recherche d'une alternance pour septembre 2024
+                                dans le développement d'applications. Passionné par les nouvelles technologies,
+                                je souhaite mettre en pratique mes compétences et en développer de nouvelles
+                                au sein d'une entreprise dynamique.
                             </p>
                         </div>
                     </div>
                 </div>
             `;
-        
         case 'projects':
             return `
                 <div style="position: relative; z-index: 1000;">
-                    <h2>Mes Projets</h2>
-                    <div class="language-filter" style="position: relative; z-index: 1000;">
-                        <button class="filter-btn active" data-language="all">Tous</button>
-                        <button class="filter-btn" data-language="javascript">JavaScript</button>
-                        <button class="filter-btn" data-language="python">Python</button>
-                        <button class="filter-btn" data-language="react">React</button>
-                        <button class="filter-btn" data-language="vue">Vue.js</button>
-                        <button class="filter-btn" data-language="php">PHP</button>
-                    </div>
-                    <div class="projects-grid" style="position: relative; z-index: 1000;">
-                        ${generateProjectCards(1)}
-                    </div>
-                    <div class="pagination" style="position: relative; z-index: 1000;">
-                        <button class="page-btn active" data-page="1">1</button>
-                        <button class="page-btn" data-page="2">2</button>
-                        <button class="page-btn" data-page="3">3</button>
-                    </div>
-                </div>
-            `;
-        
-        case 'contact':
-            return `
-                <div style="
-                    position: relative;
-                    z-index: 1000;
-                    background: rgba(255, 255, 255, 0.1);
-                    padding: 30px;
-                    border-radius: 20px;
-                    backdrop-filter: blur(10px);
-                    border: 1px solid rgba(255, 255, 255, 0.1);
-                    max-width: 500px;
-                    margin: 0 auto;
-                ">
-                    <h2 style="color: #FFD700; margin-bottom: 20px;">Me Contacter</h2>
+                    <h2 style="
+                        color: #FFD700;
+                        font-size: 2.5em;
+                        margin-bottom: 30px;
+                        text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+                    ">Mes Projets</h2>
                     
-                    <div style="
-                        display: flex;
-                        flex-direction: column;
-                        gap: 15px;
-                    ">
-                        <div style="
-                            background: rgba(255, 255, 255, 0.05);
-                            padding: 15px;
-                            border-radius: 10px;
-                            display: flex;
-                            align-items: center;
-                            gap: 10px;
-                        ">
-                            <span style="color: #FFD700;">📧</span>
-                            <span>luca.portfolio@example.com</span>
-                        </div>
-                        
-                        <div style="
-                            background: rgba(255, 255, 255, 0.05);
-                            padding: 15px;
-                            border-radius: 10px;
-                            display: flex;
-                            align-items: center;
-                            gap: 10px;
-                        ">
-                            <span style="color: #FFD700;">📱</span>
-                            <span>+33 6 12 34 56 78</span>
-                        </div>
-                        
-                        <div style="
-                            background: rgba(255, 255, 255, 0.05);
-                            padding: 15px;
-                            border-radius: 10px;
-                            display: flex;
-                            align-items: center;
-                            gap: 10px;
-                        ">
-                            <span style="color: #FFD700;">💼</span>
-                            <span>LinkedIn: /in/luca-portfolio</span>
-                        </div>
+                    <div class="language-filter">
+                        <button class="filter-btn active" data-language="all">Tous</button>
+                        <button class="filter-btn" data-language="java">Java</button>
+                        <button class="filter-btn" data-language="python">Python</button>
+                        <button class="filter-btn" data-language="linux">Linux</button>
+                        <button class="filter-btn" data-language="javascript">JavaScript</button>
+                    </div>
+
+                    <div id="projects-container" class="projects-grid">
+                        <!-- Les projets seront générés ici -->
                     </div>
                 </div>
             `;
-        
         default:
             return 'Section non trouvée';
     }

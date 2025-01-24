@@ -8,34 +8,69 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/projects.css">
     <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/effects.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+    <meta name="description" content="Portfolio de Luca - Développeur Full Stack">
+    <meta name="keywords" content="développeur, portfolio, javascript, python, java">
+    <meta name="theme-color" content="#000428">
+    <link rel="preload" as="font" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600&display=swap">
+    <link rel="preload" as="font" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap">
+    <link rel="preload" href="images/profile.jpg" as="image">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Luca Devaux - Portfolio">
+    <meta property="og:description" content="Développeur Full Stack - Portfolio interactif">
+    <meta property="og:image" content="/images/preview.jpg">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 </head>
 <body>
-    <div class="header-content">
-        <h1>Luca</h1>
-        <div class="subtitle">
+    <div class="parallax-bg"></div>
+    <nav class="main-nav">
+        <div class="nav-links">
             <a href="#about" data-section="about">About Me</a>
             <a href="#projects" data-section="projects">My Projects</a>
-            <a href="#contact" data-section="contact">Contact</a>
         </div>
+    </nav>
+
+    <div class="header-content">
+        <div class="name-container">
+            <h1>LUCA</h1>
+            <h2>Devaux</h2>
+        </div>
+        <div class="typing-text">Développeur <span class="dynamic-text"></span></div>
+    </div>
+
+    <div class="scroll-indicator">
+        <span>Scroll pour découvrir</span>
+        <i class="fas fa-chevron-down"></i>
     </div>
 
     <div id="content"></div>
 
     <button id="back-button">Retour</button>
 
+    <div class="loading-screen">
+        <div class="loader"></div>
+        <p>Chargement de l'expérience...</p>
+    </div>
+
     <!-- Chargement de Three.js AVANT vos scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    
+    <!-- Après Three.js et avant vos scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <!-- Vos scripts dans le bon ordre -->
-    <script src="js/three-congif.js"></script>
-    <script src="js/animation.js"></script>
-    <script src="js/content.js"></script>
-    <script src="js/projects.js"></script>
-    <script src="js/navigation.js"></script>
-    <script src="js/title-animation.js"></script>
-    
+    <script src="js/three-config.js"></script>  <!-- Configuration de base Three.js -->
+    <script src="js/animation.js"></script>     <!-- Animations Three.js qui dépendent de three-config -->
+    <script src="js/projects.js"></script>      <!-- Logique des projets qui dépend de Three.js -->
+    <script src="js/content.js"></script>       <!-- Contenu qui peut dépendre des projets -->
+    <script src="js/navigation.js"></script>    <!-- Navigation qui dépend du contenu -->
+    <script src="js/title-animation.js"></script><!-- Animations du titre qui peuvent être chargées en dernier -->
+    <script src="js/typing-animation.js"></script>
+    <!-- Ajout des nouveaux scripts avant la fermeture de body -->
+    <script src="js/interactions.js"></script>
 </body>
 </html>
