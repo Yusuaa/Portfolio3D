@@ -198,8 +198,8 @@ h1 {
     max-width: 1200px;
     height: 85vh;
     overflow-y: auto;
-    background: rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(10px);
+    background: none; /* Supprime le fond noir */
+    backdrop-filter: none; /* Supprime l'effet de flou */
     border-radius: 20px;
     padding: 2rem;
     margin: 0 auto;
@@ -209,6 +209,8 @@ h1 {
     opacity: 0;
     pointer-events: none;
     -webkit-overflow-scrolling: touch; /* Pour un défilement plus fluide sur iOS */
+    z-index: 5;
+    overflow-x: hidden; /* Empêche le défilement horizontal */
 }
 
 .about-container,
@@ -225,6 +227,8 @@ h1 {
     gap: 2rem;
     width: 100%;
     margin: 2rem auto;
+    padding-right: 1rem; /* Ajoute un peu d'espace pour la barre de défilement */
+    box-sizing: border-box; /* S'assure que le padding est inclus dans la largeur */
 }
 
 .language-filter {
@@ -558,6 +562,13 @@ h2 {
     position: relative;
     top: 0;
     transform: none;
+    background: none; /* Supprime le fond */
+    backdrop-filter: none; /* Supprime l'effet de flou */
+}
+
+/* Pour garder la lisibilité du texte, on peut ajouter une ombre au texte */
+.about-section p {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 /* Style pour la section Projets */
@@ -567,7 +578,8 @@ h2 {
     padding: 2rem;
     margin: 0 auto;
     position: relative;
-    z-index: 1;
+    z-index: 10;
+    overflow-x: hidden; /* Empêche le défilement horizontal */
 }
 
 .projects-grid {
@@ -576,6 +588,8 @@ h2 {
     gap: 2rem;
     width: 100%;
     margin: 2rem 0;
+    padding-right: 1rem; /* Ajoute un peu d'espace pour la barre de défilement */
+    box-sizing: border-box; /* S'assure que le padding est inclus dans la largeur */
 }
 
 .project-card {
@@ -584,11 +598,11 @@ h2 {
     padding: 1.5rem;
     border: 1px solid rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    cursor: pointer;
     position: relative;
     overflow: hidden;
-    z-index: 2;
-    cursor: pointer;
+    z-index: 20;
     will-change: transform;
     transform: translateZ(0);
     backface-visibility: hidden;
@@ -610,7 +624,7 @@ h2 {
 .project-card * {
     position: relative;
     z-index: 3;
-    pointer-events: none;
+    pointer-events: auto;
 }
 
 .project-links a {
@@ -621,8 +635,8 @@ h2 {
 
 .project-card:hover {
     transform: translateY(-5px) translateZ(0);
-    background: rgba(255, 255, 255, 0.08);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 .project-image {
@@ -667,6 +681,8 @@ h2 {
     display: flex;
     gap: 1rem;
     margin-top: 1rem;
+    position: relative;
+    z-index: 30;
 }
 
 .project-link {
@@ -727,6 +743,7 @@ body.content-page {
     height: 85vh;
     margin: 0;
     padding: 2rem;
+    overflow-x: hidden; /* Empêche le défilement horizontal */
 }
 
 .about-section,
@@ -758,6 +775,53 @@ body.content-page #content {
 
 body.content-page.transitioning {
     overflow: hidden;
+}
+
+/* ...existing code... */
+
+/* Styles pour les filtres de projets */
+.project-filters {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.filter-btn {
+    padding: 0.5rem 1.5rem;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
+    backdrop-filter: blur(5px);
+}
+
+.filter-btn:hover, .filter-btn.active {
+    background: rgba(255, 215, 0, 0.2);
+    border-color: #FFD700;
+    color: #FFD700;
+    transform: translateY(-2px);
+}
+
+/* Style pour l'indicateur de statut */
+.project-status {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.3rem 0.8rem;
+    background: rgba(255, 215, 0, 0.2);
+    color: #FFD700;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    z-index: 5;
+}
+
+[data-status="in-progress"] {
+    border: 1px solid rgba(255, 215, 0, 0.3);
 }
 
 /* ...existing code... */

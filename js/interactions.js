@@ -144,24 +144,25 @@ window.addEventListener('touchmove', (e) => {
     }
 });
 
+// Modification de la fonction de transition
 function transitionToProjects() {
     if (isTransitioning) return;
     isTransitioning = true;
 
-    const sceneElements = window.threeElements;
-    if (!sceneElements || !sceneElements.camera) return;
-
-    // Reset de la position de scroll
+    // Reset scroll position
     window.scrollTo(0, 0);
+    document.body.classList.remove('home-page');
+    document.body.classList.add('content-page');
 
-    // Animation de la caméra
-    gsap.to(sceneElements.camera.position, {
-        z: 400,
-        duration: 1.5,
-        ease: "power2.inOut"
-    });
+    const sceneElements = window.threeElements;
+    if (sceneElements && sceneElements.camera) {
+        gsap.to(sceneElements.camera.position, {
+            z: 400,
+            duration: 1.5,
+            ease: "power2.inOut"
+        });
+    }
 
-    // Fade out du header sans décalage
     gsap.to('.header-content', {
         opacity: 0,
         y: 0,
@@ -169,7 +170,6 @@ function transitionToProjects() {
         ease: "power2.inOut"
     });
 
-    // Charger et afficher la section projets
     setTimeout(() => {
         const content = document.getElementById('content');
         content.innerHTML = getSectionContent('projects');

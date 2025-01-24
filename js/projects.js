@@ -1,6 +1,44 @@
 // Dans projects.js
 const projects = [
   {
+    title: "Osu Tournament Management System",
+    language: "php",
+    description: "Plateforme web pour la gestion des tournois Osu!, remplaçant les solutions Google Docs traditionnelles",
+    tools: ["Symfony 7", "PHP 8.2", "Twig", "MySQL", "Osu! API", "Composer"],
+    detailedDescription: `
+        But : Créer une plateforme dédiée à l'organisation des tournois Osu!
+        
+        Règles : 
+        - Interface utilisateur intuitive
+        - Intégration avec l'API Osu!
+        - Gestion sécurisée des données
+        
+        Objectifs : 
+        - Remplacer les Google Docs/Sheets par une solution dédiée
+        - Automatiser la gestion des tournois
+        - Faciliter l'organisation des compétitions
+        - Intégrer l'authentification Osu!
+        - Gérer les brackets et les matchs
+    `,
+    skills: [
+        "Développement Symfony",
+        "Intégration API",
+        "Base de données relationnelle",
+        "Authentification OAuth",
+        "Architecture MVC",
+        "Travail collaboratif",
+        "Gestion de projet"
+    ],
+    github: "https://github.com/FofoIsOnInternet/Osu-TMS-Website",
+    status: "in-progress",
+    tech_stack: {
+        "PHP": "50.9%",
+        "Twig": "41.5%",
+        "JavaScript": "7.5%",
+        "CSS": "0.1%"
+    }
+  },
+  {
     title: "Portfolio Dynamique",
     language: "javascript",
     description: "Portfolio interactif avec Three.js",
@@ -413,3 +451,46 @@ window.debug = {
 window.showProjectDetails = showProjectDetails;
 
 console.log('Projects.js chargé');
+
+document.addEventListener('DOMContentLoaded', () => {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const projects = document.querySelectorAll('.project-card');
+
+    filterButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Retirer la classe active de tous les boutons
+            filterButtons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const filter = btn.dataset.filter;
+
+            projects.forEach(project => {
+                if (filter === 'all' || project.dataset.status === filter) {
+                    project.style.display = 'block';
+                    project.style.animation = 'fadeIn 0.5s ease forwards';
+                } else {
+                    project.style.display = 'none';
+                }
+            });
+        });
+    });
+});
+
+// Animation pour l'apparition des projets
+const fadeIn = `
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+`;
+
+// Ajouter l'animation au style
+const style = document.createElement('style');
+style.textContent = fadeIn;
+document.head.appendChild(style);

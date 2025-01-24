@@ -13,6 +13,11 @@
     scrollbar-color: rgba(255, 215, 0, 0.5) rgba(255, 255, 255, 0.1);
 }
 
+.projects-grid.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
 .projects-grid::-webkit-scrollbar {
     width: 8px;
 }
@@ -39,6 +44,8 @@
     gap: 15px;
     position: relative;
     overflow: hidden;
+    transform-style: preserve-3d;
+    perspective: 1000px;
 }
 
 .project-card::before {
@@ -112,6 +119,7 @@
     border-radius: 15px;
     font-size: 0.9em;
     border: 1px solid rgba(255, 215, 0, 0.2);
+    transform: translateZ(20px);
 }
 
 .project-description {
@@ -137,8 +145,15 @@
 
 /* Styles améliorés pour les détails des projets */
 .project-details {
-    color: #fff;
-    font-family: 'Playfair Display', serif;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2000;
+    overflow-y: auto;
+    padding: 20px;
+    backdrop-filter: blur(10px);
 }
 
 .glass-panel {
@@ -373,6 +388,7 @@
     z-index: 2000;
     overflow-y: auto;
     padding: 20px;
+    backdrop-filter: blur(10px);
 }
 
 .details-content {
@@ -436,12 +452,12 @@
 }
 
 section {
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.2);
     border-radius: 15px;
     padding: 25px;
     border: 1px solid rgba(255, 215, 0, 0.2);
-    backdrop-filter: blur(8px);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.0);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
 }
 
 section h3 {
@@ -556,4 +572,22 @@ section h3 {
     .details-body {
         grid-template-columns: 1fr;
     }
+}
+
+/* Ajout d'un indicateur de progression */
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: rgba(255, 215, 0, 0.1);
+    z-index: 2000;
+}
+
+.scroll-progress-bar {
+    height: 100%;
+    background: #FFD700;
+    width: 0;
+    transition: width 0.1s ease;
 }
