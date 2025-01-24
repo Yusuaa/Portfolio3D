@@ -1,88 +1,92 @@
-// Récupération des éléments
-const h1 = document.querySelector('h1');
-const subtitle = document.querySelector('.subtitle');
 const content = document.getElementById('content');
 const backButton = document.getElementById('back-button');
 const headerContent = document.querySelector('.header-content');
 
-// Gestion des liens de navigation
-document.querySelectorAll('.subtitle a').forEach(link => {
-    link.addEventListener('click', async (e) => {
-        e.preventDefault();
-        const section = e.target.getAttribute('data-section');
-        
-        // Vérifier que la section est valide
-        if (!section || !['about', 'projects', 'contact'].includes(section)) {
-            console.error('Section invalide:', section);
-            return;
-        }
-        
-        const sectionContent = getSectionContent(section);
-        if (sectionContent === 'Section non trouvée') {
-            console.error('Contenu de section non trouvé pour:', section);
-            return;
-        }
-        
-        await animateLetterTransition(0, 1000, true, sectionContent);
-        
-        // Initialiser les projets si nécessaire
-        if (section === 'projects') {
-            setTimeout(() => {
-                initializeProjectsSection();
-            }, 100);
-        }
-    });
-});
+const INITIAL_CAMERA_Z = 1000;
+const ZOOMED_CAMERA_Z = 400;
 
-// Gestion du bouton retour
-backButton.addEventListener('click', async () => {
-    const startTime = performance.now();
-    const duration = 1200;
+document.addEventListener('DOMContentLoaded', function() {
+    const scrollIndicator = document.querySelector('.scroll-indicator');
+    let isTransitioning = false;
     
-    material.uniforms.opacity.value = 0;
-    
-    return new Promise((resolve) => {
-        function animateReturn(currentTime) {
-            const elapsed = currentTime - startTime;
-            const progress = Math.min(elapsed / duration, 1);
-            
-            const easedProgress = 1 - Math.pow(1 - progress, 3);
-            
-            if (progress <= 0.5) {
-                const zoomProgress = progress * 2;
-                const currentScale = 3 - (zoomProgress * 2);
-                renderer.domElement.style.transform = `scale(${currentScale})`;
-                
-                content.style.opacity = `${1 - zoomProgress * 2}`;
-                backButton.style.opacity = `${1 - zoomProgress * 2}`;
-            }
-            
-            if (progress > 0.5) {
-                const fadeInProgress = (progress - 0.5) * 2;
-                const smoothFade = 1 - Math.pow(1 - fadeInProgress, 2);
-                
-                material.uniforms.opacity.value = smoothFade;
-                letterL.scale.set(1, 1, 1);
-                
-                headerContent.style.opacity = smoothFade;
-            }
+    function toggleScrollIndicator(isHome) {
+        scrollIndicator.style.opacity = isHome ? '1' : '0';
+        scrollIndicator.style.pointerEvents = isHome ? 'auto' : 'none';
+    }
 
-            if (progress < 1) {
-                requestAnimationFrame(animateReturn);
-            } else {
-                content.innerHTML = '';
-                content.style.opacity = '0';
-                backButton.style.opacity = '0';
-                letterL.scale.set(1, 1, 1);
-                material.uniforms.opacity.value = 1;
-                renderer.domElement.style.transform = 'scale(1)';
-                
-                headerContent.style.opacity = '1';
-                
-                resolve();
-            }
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', async (e) => {
+            e.preventDefault();
+            if (isTransitioning) return;
+            navigateToSection(e.target.getAttribute('data-section'));
+        });
+    });
+
+    backButton.addEventListener('click', async () => {
+        if (isTransitioning) return;
+        isTransitioning = true;
+        
+        const sceneElements = window.threeElements;
+        if (sceneElements && sceneElements.camera) {
+            gsap.to(sceneElements.camera.position, {
+                z: INITIAL_CAMERA_Z,
+                duration: 1,
+                ease: "power2.inOut"
+            });
         }
 
-        requestAnimationFrame(animateReturn);
+        content.style.opacity = '0';
+        backButton.style.opacity = '0';
+        document.body.classList.remove('content-page');
+        document.body.classList.add('home-page');
+        
+        await new Promise(resolve => setTimeout(resolve, 500));
+        window.scrollTo(0, 0);
+        content.innerHTML = '';
+        headerContent.style.opacity = '1';
+        toggleScrollIndicator(true);
+        isTransitioning = false;
     });
+
+    async function navigateToSection(section) {
+        if (isTransitioning) return;
+        isTransitioning = true;
+        
+        // Reset scroll position
+        window.scrollTo(0, 0);
+        document.body.classList.add('transitioning');
+
+        // Animation et transition
+        const sceneElements = window.threeElements;
+        if (sceneElements && sceneElements.camera) {
+            gsap.to(sceneElements.camera.position, {
+                z: ZOOMED_CAMERA_Z,
+                duration: 1,
+                ease: "power2.inOut"
+            });
+        }
+
+        headerContent.style.opacity = '0';
+        document.body.classList.add('content-page');
+        document.body.classList.remove('home-page');
+        
+        await new Promise(resolve => setTimeout(resolve, 500));
+        
+        content.innerHTML = window.getSectionContent(section);
+        content.style.opacity = '1';
+        
+        if (section === 'projects' && window.initializeProjectsSection) {
+            window.initializeProjectsSection();
+        }
+        
+        backButton.style.opacity = '1';
+        toggleScrollIndicator(false);
+        document.body.classList.remove('transitioning');
+        
+        setTimeout(() => {
+            isTransitioning = false;
+        }, 1000);
+    }
+    
+    document.body.classList.add('home-page');
 });

@@ -2,19 +2,19 @@ let rotationDirection = 1;
 let rotationSpeed = 0.02;
 let rotationThreshold = Math.PI / 16;
 
-function animate(time) {
+let lastTime = 0;
+const fps = 60;
+const interval = 1000 / fps;
+
+// Supprimer toutes les références à letterL et modifier la fonction animate
+function animate(currentTime) {
     requestAnimationFrame(animate);
 
-    material.uniforms.time.value = time * 0.03;
-
-    letterL.rotation.y += rotationSpeed * rotationDirection;
-
-    if (letterL.rotation.y > rotationThreshold || letterL.rotation.y < -rotationThreshold) {
-        rotationDirection *= -1;
-    }
-
-    stars.rotation.y += 0.001;
-    stars.rotation.x += 0.001;
+    // Animation des étoiles uniquement
+    stars.children.forEach((star, i) => {
+        star.position.z += Math.sin(currentTime * 0.001 + i) * 0.01;
+        if (star.position.z > 1000) star.position.z = -1000;
+    });
 
     renderer.render(scene, camera);
 }
@@ -62,6 +62,74 @@ function animateLetterTransition(toOpacity, duration = 1000, isZoomTransition = 
         }
 
         requestAnimationFrame(updateTransition);
+    });
+}
+
+// Ajout de l'effet de parallaxe
+document.addEventListener('mousemove', (e) => {
+    const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
+    const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
+
+    gsap.to('.parallax-bg', {
+        x: moveX,
+        y: moveY,
+        duration: 1,
+        ease: 'power2.out'
+    });
+
+    // Animation des étoiles en fonction du mouvement de la souris
+    if (stars) {
+        gsap.to(stars.rotation, {
+            x: moveY * 0.05,
+            y: moveX * 0.05,
+            duration: 2,
+            ease: 'power2.out'
+        });
+    }
+});
+
+// Système de particules interactives
+document.addEventListener('mousemove', (e) => {
+    if (Math.random() > 0.9) { // Limite la fréquence des particules
+        createParticle(e.clientX, e.clientY);
+    }
+});
+
+function createParticle(x, y) {
+    const particle = document.createElement('div');
+    particle.className = 'particle';
+    
+    const size = Math.random() * 20 + 10;
+    particle.style.width = `${size}px`;
+    particle.style.height = `${size}px`;
+    
+    particle.style.left = `${x - size/2}px`;
+    particle.style.top = `${y - size/2}px`;
+    
+    document.body.appendChild(particle);
+    
+    setTimeout(() => particle.remove(), 1000);
+}
+
+// Écran de chargement
+window.addEventListener('load', () => {
+    const loadingScreen = document.querySelector('.loading-screen');
+    setTimeout(() => {
+        loadingScreen.style.opacity = '0';
+        setTimeout(() => {
+            loadingScreen.style.display = 'none';
+        }, 500);
+    }, 1500);
+});
+
+// Amélioration de l'animation de la lettre L
+function enhancedLetterAnimation() {
+    gsap.to(letterL.position, {
+        y: Math.sin(Date.now() * 0.001) * 0.1,
+        duration: 1,
+        repeat: -1,
+        yoyo: true,
+        ease: 'power1.inOut'
     });
 }
 
