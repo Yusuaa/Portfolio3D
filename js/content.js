@@ -157,7 +157,7 @@ function getSectionContent(section) {
                                 <i class="fas fa-search"></i> Recherche d'Alternance
                             </h3>
                             <p style="line-height: 1.6;">
-                                Je suis actuellement à la recherche d'une alternance pour septembre 2024
+                                Je suis actuellement à la recherche d'une alternance pour septembre 2025
                                 dans le développement d'applications. Passionné par les nouvelles technologies,
                                 je souhaite mettre en pratique mes compétences et en développer de nouvelles
                                 au sein d'une entreprise dynamique.
