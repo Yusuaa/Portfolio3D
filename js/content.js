@@ -22,19 +22,21 @@ function getSectionContent(section) {
                         z-index: 1000;
                         box-shadow: 0 8px 32px rgba(255, 215, 0, 0.1);
                     ">
-                        <div class="profile-image" style="
-                            width: 150px;
-                            height: 150px;
-                            background: linear-gradient(45deg, rgba(255, 215, 0, 0.3), rgba(255, 165, 0, 0.3));
+                        <img src="Luca.png" alt="Luca Devaux" style="
+                            width: 170px;            /* Augmenté de 150px à 170px */
+                            height: 170px;           /* Augmenté de 150px à 170px */
+                            background: none;
                             border: 2px solid rgba(255, 215, 0, 0.5);
                             border-radius: 50%;
                             margin: 0 auto 20px;
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            font-size: 2.5em;
-                            overflow: hidden;
-                        ">L</div>
+                            object-fit: cover;
+                            object-position: center 40%;  /* Modifié de 20% à 30% pour descendre l'image */
+                            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                            cursor: pointer;
+                            transition: transform 0.3s ease, box-shadow 0.3s ease;
+                        " onclick="openImageModal(this.src)" onmouseover="this.style.transform='scale(1.1)';this.style.boxShadow='0 8px 16px rgba(0, 0, 0, 0.3)';" 
+                          onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 4px 8px rgba(0, 0, 0, 0.2)';"
+                        />
                         <h2 style="
                             font-size: 1.8em;
                             margin-bottom: 10px;
@@ -191,3 +193,42 @@ function getSectionContent(section) {
             return 'Section non trouvée';
     }
 }
+
+// Ajouter la fonction pour ouvrir l'image en modal
+function openImageModal(src) {
+    const modal = document.createElement('div');
+    modal.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        cursor: pointer;
+    `;
+
+    const img = document.createElement('img');
+    img.src = src;
+    img.style.cssText = `
+        max-width: 600px;        /* Taille fixe plus grande */
+        max-height: 600px;       /* Taille fixe plus grande */
+        width: 90vw;             /* Responsive sur petits écrans */
+        height: 90vw;            /* Responsive sur petits écrans */
+        border-radius: 10px;
+        object-fit: cover;
+        object-position: center 30%;  /* Mis à jour pour correspondre à la miniature */
+        transition: transform 0.3s ease;
+    `;
+
+    modal.appendChild(img);
+    document.body.appendChild(modal);
+
+    modal.onclick = () => modal.remove();
+}
+
+// Rendre la fonction accessible globalement
+window.openImageModal = openImageModal;

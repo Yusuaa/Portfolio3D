@@ -12,14 +12,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Space+Grotesk:wght@400;600&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
     <meta name="description" content="Portfolio de Luca - Développeur Full Stack">
     <meta name="keywords" content="développeur, portfolio, javascript, python, java">
     <meta name="theme-color" content="#000428">
-    <link rel="preload" as="font" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600&display=swap">
-    <link rel="preload" as="font" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap">
-    <link rel="preload" href="images/profile.jpg" as="image">
     <meta name="robots" content="index, follow">
     <meta property="og:title" content="Luca Devaux - Portfolio">
     <meta property="og:description" content="Développeur Full Stack - Portfolio interactif">
@@ -63,14 +59,13 @@
     <!-- Après Three.js et avant vos scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <!-- Vos scripts dans le bon ordre -->
-    <script src="js/three-config.js"></script>  <!-- Configuration de base Three.js -->
-    <script src="js/animation.js"></script>     <!-- Animations Three.js qui dépendent de three-config -->
-    <script src="js/projects.js"></script>      <!-- Logique des projets qui dépend de Three.js -->
-    <script src="js/content.js"></script>       <!-- Contenu qui peut dépendre des projets -->
-    <script src="js/navigation.js"></script>    <!-- Navigation qui dépend du contenu -->
-    <script src="js/title-animation.js"></script><!-- Animations du titre qui peuvent être chargées en dernier -->
+    <script src="js/three-config.js"></script>
+    <script src="js/content.js"></script>       <!-- Déplacé avant navigation.js -->
+    <script src="js/navigation.js"></script>    <!-- Dépend de content.js -->
+    <script src="js/animation.js"></script>
+    <script src="js/projects.js"></script>
+    <script src="js/title-animation.js"></script>
     <script src="js/typing-animation.js"></script>
-    <!-- Ajout des nouveaux scripts avant la fermeture de body -->
     <script src="js/interactions.js"></script>
 </body>
 </html>

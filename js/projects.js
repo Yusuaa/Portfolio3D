@@ -39,28 +39,46 @@ const projects = [
     }
   },
   {
-    title: "Portfolio Dynamique",
+    title: "Portfolio 3D Interactif",
     language: "javascript",
-    description: "Portfolio interactif avec Three.js",
-    tools: ["Three.js", "JavaScript", "HTML5", "CSS3"],
+    description: "Portfolio moderne avec animations 3D et interactions dynamiques, créé avec Three.js et JavaScript",
+    tools: ["Three.js", "JavaScript", "HTML5", "CSS3", "GSAP", "Git"],
     detailedDescription: `
-        But : Créer un portfolio interactif et moderne
-        Règles : Interface intuitive et responsive
+        But : Créer un portfolio unique et interactif qui se démarque
+        
+        Caractéristiques : 
+        - Animations 3D fluides et réactives
+        - Interface utilisateur intuitive
+        - Navigation dynamique entre les sections
+        - Effets visuels modernes
+        - Responsive design
+        
         Objectifs : 
-        - Présenter mes projets de manière interactive
-        - Créer une expérience utilisateur unique
-        - Apprendre une nouvelle technologie (Three.js)
+        - Mettre en valeur mes projets de manière créative
+        - Démontrer mes compétences en développement front-end
+        - Créer une expérience utilisateur immersive
+        - Maîtriser Three.js et les animations 3D
+        - Optimiser les performances
     `,
     skills: [
         "Développement 3D avec Three.js",
-        "Animation et transitions complexes",
+        "Animations avancées avec GSAP",
         "Optimisation des performances",
-        "Design responsive"
+        "Design UI/UX",
+        "Gestion de projet",
+        "Responsive design",
+        "Contrôle de version avec Git"
     ],
+    github: "https://github.com/Yusuaa/Portfolio3D",
+    status: "in-progress",
+    tech_stack: {
+        "JavaScript": "63.0%",
+        "CSS": "33.0%",
+        "HTML": "4.0%"
+    },
     images: [
-        "/images/portfolio1.jpg",
-        "/images/portfolio2.jpg",
-        "/images/portfolio3.jpg"
+        "portfolio1.png",
+        "portfolio2.png"
     ]
   },
   { 
